@@ -1,12 +1,13 @@
 import express from 'express'
-import { Hello } from './Controllers/GlobalControllers.js'
+// import { Hello } from './Controllers/GlobalControllers.js'
+import router from './Routes/index.js'
 
 const app = express()
 
-app.get ("/", function(req, res){
-    res.send('hello...')
+app.get("/", function (req, res) {
+    res.send('hello santosh...')
 })
 
-app.get('/Hello',Hello)
+app.use("/api/v1", router)
 
-app.listen(8000,() =>console.log("app is running on 8000"))
+app.listen(8000, () => console.log("app is running on 8000"))
