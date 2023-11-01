@@ -1,5 +1,6 @@
 import UserModal from "../Modals/User.model.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import  Jwt  from "jsonwebtoken";
 
 export const Login = async (req, res) => {
     try {
@@ -18,7 +19,10 @@ export const Login = async (req, res) => {
             return res.status(401).json({ success: false, message: "Password is wrong" })
         }
 
-        return res.status(200).json({ success: true, message: "Login successfully", user: { name: user.name, id: user._id } })
+        const token = await Jwt.sign({id:user._id},process.env.JWT_SECRETE)
+        // console.log(token, "token")
+
+        return res.status(200).json({ success: true, message: "Login successfully", user: { name: user.name, id: user._id }, token })
 
     } catch (error) {
         return res.status(500).json({ success: false, message: error })
