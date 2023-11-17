@@ -33,8 +33,8 @@ export const Login = async (req, res) => {
 export const Register = async (req, res) => {
     try {
         //console.log(req.body, "req.body")
-        const { name, email, password, number } = req.body;
-        if (!name || !email || !password || !number) return res.status(401).json({ success: false, message: "all fields are mandotory..." })
+        const { name, email, password } = req.body.userData;
+        if (!name || !email || !password) return res.status(401).json({ success: false, message: "all fields are mandotory..." })
 
         const hashdPassword = await bcrypt.hash(password, 10);
         // console.log(hashdPassword,"hashedPassword")
@@ -42,7 +42,7 @@ export const Register = async (req, res) => {
             name: name,
             email,
             password: hashdPassword,
-            number
+            
         })
 
         await user.save();

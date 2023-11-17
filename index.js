@@ -23,6 +23,10 @@ app.get("/", function (req, res) {
     res.send('hello santosh...')
 })
 
+app.get('/',(req,res)=> {
+    res.send("welcome to backend")
+}) 
+
 app.use("/api/v1", router)
 
 mongoose.connect('mongodb+srv://survesantosh09:67kDdxwCIBYPytGO@cluster0.hhewsjk.mongodb.net/Awdiz').then(() => console.log('database connected!'))
