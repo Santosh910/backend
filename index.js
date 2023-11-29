@@ -34,4 +34,4 @@ mongoose.connect('mongodb+srv://survesantosh09:67kDdxwCIBYPytGO@cluster0.hhewsjk
 // mongoose.connect(process.env.MONGOURL).then(() => console.log("Database connected"))
 
 
-app.listen(8000, () => console.log("app is running on 8000"))
+app.listen(8001, () => console.log("app is running on 8000"))

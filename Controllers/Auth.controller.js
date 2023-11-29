@@ -56,8 +56,11 @@ export const Register = async (req, res) => {
 
 export const getCurrentUser = async (req, res) => {
     try {
-        const { id } = req.body;
-        if (!id) return res.status(401).json({ success: false, message: "ID is required" })
+        const { token } = req.body;
+        if (!token) return res.status(401).json({ success: false, message: "token is required" })
+
+        const{id}=await Jwt.verify(token,process.env.JWT_SECRETE)
+
         const user = await UserModal.findById(id);
         if(!user) return res.status(401).json({success:false,message:"User not found"})
 
